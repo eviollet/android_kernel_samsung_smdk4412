@@ -369,11 +369,11 @@ KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -Werror-implicit-function-declaration \
 		   -Wno-format-security \
 		   -fno-delete-null-pointer-checks \
+                   -mtune=cortex-a9
 		   -pipe \
 		   -ffast-math \
 		   -mfpu=neon \
-		   -march=armv7-a \
-		   -mtune=cortex-a9
+		   -march=armv7-a \   
 KBUILD_AFLAGS_KERNEL :=
 KBUILD_CFLAGS_KERNEL :=
 KBUILD_AFLAGS   := -D__ASSEMBLY__
