@@ -259,7 +259,7 @@ struct s3cfb_user_chroma {
 #define S3CFB_SET_ALPHA_MODE		_IOW('F', 313, unsigned int)
 
 extern struct fb_ops			s3cfb_ops;
-<<<<<<< HEAD
+
 /* extern inline struct s3cfb_global	*get_fimd_global(int id); */
 extern struct s3cfb_fimd_desc    *fbfimd;
 extern struct s3cfb_global	*get_fimd_global(int id);
