@@ -262,8 +262,6 @@ extern struct fb_ops			s3cfb_ops;
 
 /* extern inline struct s3cfb_global	*get_fimd_global(int id); */
 extern struct s3cfb_fimd_desc    *fbfimd;
-extern struct s3cfb_global	*get_fimd_global(int id);
-
 #define get_fimd_global(id) \
 	(id < 5 ? fbfimd->fbdev[0] : fbfimd->fbdev[1])
 
