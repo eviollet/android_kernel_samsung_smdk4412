@@ -6,24 +6,12 @@
 
 typedef struct page *new_page_t(struct page *, unsigned long private, int **);
 
-/*
- * MIGRATE_ASYNC means never block
- * MIGRATE_SYNC_LIGHT in the current implementation means to allow blocking
- *	on most operations but not ->writepage as the potential stall time
- *	is too significant
- * MIGRATE_SYNC will block when migrating pages
- */
-enum migrate_mode {
-	MIGRATE_ASYNC,
-	MIGRATE_SYNC_LIGHT,
-	MIGRATE_SYNC,
-};
-
 #ifdef CONFIG_MIGRATION
 #define PAGE_MIGRATION 1
 
 extern void putback_lru_pages(struct list_head *l);
 extern int migrate_page(struct address_space *,
+			struct page *, struct page *);
 #ifndef CONFIG_DMA_CMA
 extern int migrate_pages(struct list_head *l, new_page_t x,
 			unsigned long private, bool offlining,
@@ -35,7 +23,7 @@ extern int migrate_pages(struct list_head *l, new_page_t x,
 #endif
 extern int migrate_huge_pages(struct list_head *l, new_page_t x,
 			unsigned long private, bool offlining,
-			enum migrate_mode mode);
+			bool sync);
 
 extern int fail_migrate_page(struct address_space *,
 			struct page *, struct page *);
@@ -63,7 +51,7 @@ static inline int migrate_pages(struct list_head *l, new_page_t x,
 #endif
 static inline int migrate_huge_pages(struct list_head *l, new_page_t x,
 		unsigned long private, bool offlining,
-		enum migrate_mode mode) { return -ENOSYS; }
+		bool sync) { return -ENOSYS; }
 
 static inline int migrate_prep(void) { return -ENOSYS; }
 static inline int migrate_prep_local(void) { return -ENOSYS; }
