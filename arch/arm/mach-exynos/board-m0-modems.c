@@ -433,7 +433,7 @@ static void umts_modem_cfg_gpio(void)
 			       "PHONE_ACTIVE", err);
 		}
 		gpio_direction_input(gpio_phone_active);
-		pr_err(LOG_TAG "check phone active = %d\n", irq_phone_active);
+		pr_err(LOG_TAG "check phone active = %d\n", gpio_phone_active);
 	}
 
 	if (gpio_sim_detect) {
